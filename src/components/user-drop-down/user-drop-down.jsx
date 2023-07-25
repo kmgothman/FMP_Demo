@@ -21,13 +21,13 @@ const UserDropDown = () => {
                     <h1>{currentUser.displayName[0]}</h1>
                 </UserDiv>
                 <div>
-                    <b>Kelvin Gothman</b>
+                    <b>Demo Version</b>
                     <p>{currentUser.email}</p>
                 </div>
             </ContactDiv>
             <SignOutDiv>
                 <SignOutIcon width='20' height='20' fill={currentTheme.third} stroke={currentTheme.third}/>
-                <Link to="/" onClick={signOutClick}>Sign Out</Link>
+                <Link to="https://fmp.onrender.com/" >Sign Out</Link>
             </SignOutDiv>
             
         </UserDropContainer>
