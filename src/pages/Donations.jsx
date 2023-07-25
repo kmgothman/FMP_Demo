@@ -60,7 +60,7 @@ const Donations = () => {
 
 	const handleNextClick=() => {
 		let current = monthIndex
-		let max = monthNames.length
+		let max = monthNames.length-1
 		if (current === max) {
 
 		} else {
