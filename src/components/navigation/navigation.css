@@ -1,0 +1,16 @@
+/* .selected {
+    background-color: #c2d3ed;
+	
+  } */
+
+/* .selected & :hover {
+	background-color: #c2d3ed;
+} */
+
+ .light > .selected {
+  background-color: #c2d3ed;
+}
+
+.dark > .selected {
+ background-color: #5b7ea8;
+}
