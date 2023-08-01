@@ -45,48 +45,52 @@ const Tasks = () => {
 	}, [])
 
     const handleCompletePush=(task)=> {
-        
-      confirmAlert({
-        message: "Create an account and log in to use this feature.",
-        buttons: [
-          {
-            label: "Return to Page",
-          }
-          
-        ]
-      });
+        fetch('https://fmp-api.onrender.com/taskcompletetoggle', {
+		method: 'post',
+		headers: {'Content-Type': 'application/json'},
+		body: JSON.stringify({
+			email: currentUser.email,
+            task: task
+		})
+		})
+        .then(()=>window.location.reload(false))
     }
 
 	const addTaskClick = () => {
-		
-      	confirmAlert({
-        message: "Create an account and log in to use this feature.",
-        buttons: [
-          {
-            label: "Return to Page",
-          }
-          
-        ]
-      });
+		setNewTaskForm(!newTaskForm)
 	}
 
 	const handleCompleteAll = () => {
-        
-      confirmAlert({
-        message: "Create an account and log in to use this feature.",
-        buttons: [
-          {
-            label: "Return to Page",
-          }
-          
-        ]
-      });
+        confirmAlert({
+            message: "Mark all tasks as complete?",
+            buttons: [
+              {
+                label: "Return to Page",
+              },
+              {
+                label: "Mark Complete",
+				onClick: () => {
+					fetch('https://fmp-api.onrender.com/completeAllTasks', {
+						method: 'post',
+						headers: {'Content-Type': 'application/json'},
+						body: JSON.stringify({
+							email: currentUser.email
+						})
+						})
+						.then((response) => response.json())
+						.then((object) => {
+							window.location.reload(false);
+							})
+				}
+              }
+              
+            ]
+          });
 
     }
 
 	return(
 		<MainContainer>
-		<Header/>
 		<ContentContainer>
 			<ContentControlsContainer>
 				<NewTaskDiv>

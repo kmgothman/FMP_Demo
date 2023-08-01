@@ -42,26 +42,38 @@ const Drag_drop = () => {
   const handleSubmit = (event) => {
     if (file) {
       event.preventDefault();
-      confirmAlert({
-        message: "Create an account and log in to use this feature.",
-        buttons: [
-          {
-            label: "Return to Page",
+      
+      fetch('https://fmp-api.onrender.com/file', {
+        method: 'post',
+        headers: {'Content-Type': 'text/plain',
+                  'email': currentUser.email},
+        body: file
+        })
+        .then((response)=> response.json())
+        .then((object) => {
+          let newNames = Object.keys(object.newContacts)
+          let oldNames = Object.keys(object.existingContacts)
+          if (newNames.length) {
+            setNewDonorObject(object.newContacts)
+            setNewDonorNames(newNames)
+            setExistingDonorObject(object.existingContacts)
+            setExistingDonorNames(oldNames)
+            setFilteredDonorNames(oldNames)
+          } else {
+            setFile()
+            confirmAlert({
+              message: "Your data has been received.",
+              buttons: [
+                {
+                  label: "Return to Page",
+                }
+                
+              ]
+            });
           }
-          
-        ]
-      });
+        })
     } else {
       event.preventDefault();
-      confirmAlert({
-        message: "Create an account and log in to use this feature.",
-        buttons: [
-          {
-            label: "Return to Page",
-          }
-          
-        ]
-      });
     }
   }
 

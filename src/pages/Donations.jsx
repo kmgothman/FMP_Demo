@@ -60,8 +60,8 @@ const Donations = () => {
 
 	const handleNextClick=() => {
 		let current = monthIndex
-		let max = monthNames.length-1
-		if (current === max) {
+		let max = monthNames.length
+		if (current === max-1) {
 
 		} else {
 			let newIndex = current+1
@@ -73,7 +73,6 @@ const Donations = () => {
 		<div>
 			{monthNames.length ? (
 	<MainContainer>
-		<Header/>
 		<DonationsContainer>
 			<DonationsControlsContainer>
 				<ControlDiv><LeftIcon width='25' height='25' fill={currentTheme.third} stroke={currentTheme.third}/><a className="Prev" onClick={handlePrevClick}>Previous Month</a></ControlDiv>
@@ -108,7 +107,6 @@ const Donations = () => {
 	</MainContainer>
 	) : (
 			<MainContainer>
-				<Header/>
 				<DonationsContainer>
 					<DonationsControlsContainer>
 						<ControlDiv><LeftIcon width='25' height='25' fill={currentTheme.third} stroke={currentTheme.third}/><a className="Prev" onClick={handlePrevClick}>Previous Month</a></ControlDiv>

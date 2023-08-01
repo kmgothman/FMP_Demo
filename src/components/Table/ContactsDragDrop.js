@@ -26,26 +26,24 @@ const ContactsDragDrop = () => {
     const handleSubmit = (event) => {
       if (file) {
         event.preventDefault();
-      confirmAlert({
-        message: "Create an account and log in to use this feature.",
-        buttons: [
-          {
-            label: "Return to Page",
-          }
-          
-        ]
-      });
+        fetch('https://fmp-api.onrender.com/uploadcontacts', {
+          method: 'post',
+          headers: {'Content-Type': 'text/plain',
+                    'email': currentUser.email},
+          body: file
+          })
+          .then((response)=> response.json())
+          .then((object) => {
+            confirmAlert({
+            message: "Your data has been received.",
+            buttons: [
+                {label: "Return to Page",}  
+            ]
+            });
+            
+          })
       } else {
         event.preventDefault();
-        confirmAlert({
-        message: "Create an account and log in to use this feature.",
-        buttons: [
-          {
-            label: "Return to Page",
-          }
-          
-        ]
-      });
       }
     }
 
